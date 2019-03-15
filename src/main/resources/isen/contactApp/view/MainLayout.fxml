@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="500.0" prefWidth="800.0" stylesheets="@contactApp.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="isen.java2.project.view.MainLayoutController">
+	<top>
+		<MenuBar BorderPane.alignment="CENTER">
+			<menus>
+				<Menu mnemonicParsing="false" text="File">
+					<items>
+						<MenuItem mnemonicParsing="false" onAction="#exportContacts" text="Export contacts" />
+						<SeparatorMenuItem mnemonicParsing="false" />
+						<!--
+						<MenuItem mnemonicParsing="false" onAction="#gotoHome" text="Home" />
+						<SeparatorMenuItem mnemonicParsing="false" />
+						 -->
+						<MenuItem mnemonicParsing="false" onAction="#closeApplication" text="Close" />		
+					</items>
+				</Menu>
+				<!-- 
+				<Menu mnemonicParsing="false" text="Options">
+					<items>
+						<MenuItem mnemonicParsing="false" onAction="#deleteAllContacts" text="Delete all contacts" />
+					</items>
+				</Menu>
+				-->
+			</menus>
+		</MenuBar>
+	</top>
+</BorderPane>
