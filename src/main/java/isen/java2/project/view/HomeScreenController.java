@@ -196,6 +196,7 @@ public class HomeScreenController {
 	
 	@FXML
     private void handleAddButton() {
+		System.out.println("Firstname and Lastname cannot be empty");
 		if(!modifyPane.isVisible()) {
 			Person tmpPerson = new Person(null,"","","","",null,"",null,"");
 			peopleList.getItems().add(tmpPerson);
@@ -279,7 +280,7 @@ public class HomeScreenController {
 				if(!addressDao.isAddressExist(newAddress)) {
 					addressDao.addAddress(newAddress);
 				}
-			}else {
+			}else if (addressNumber != null || !addressStreet.isEmpty() || addressPostalCode != null || !addressCity.isEmpty()) {
 				System.out.println("Address has to be complete to be saved");
 			}
 			

@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -80,5 +81,15 @@ public class PersonDaoTestCase {
 		assertThat(newPerson.getEmailaddress()).isEqualTo(personToCreate.getEmailaddress());
 		assertThat(newPerson.getBirthdate()).isEqualTo(personToCreate.getBirthdate());
 		assertThat(newPerson.getAvatarPath()).isEqualTo(personToCreate.getAvatarPath());
+	}
+	
+	@After
+	public void deleteDb() throws SQLException {
+		Connection connection = DataSourceFactory.getDataSource().getConnection();
+		Statement stmt = connection.createStatement();
+		stmt.executeUpdate("DELETE FROM person");
+		stmt.executeUpdate("DELETE FROM address");
+		stmt.close();
+		connection.close();
 	}
 }

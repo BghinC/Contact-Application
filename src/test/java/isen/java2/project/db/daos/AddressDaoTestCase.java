@@ -4,8 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,7 +17,7 @@ public class AddressDaoTestCase {
 	private AddressDao addressDao = new AddressDao();
 
 	@Before
-	public void initDatabase() throws Exception {
+	public void initDatabase() throws SQLException {
 		Connection connection = DataSourceFactory.getDataSource().getConnection();
 		Statement stmt = connection.createStatement();
 		stmt.executeUpdate("DELETE FROM person");
@@ -56,6 +58,16 @@ public class AddressDaoTestCase {
 		assertThat(resultSet.next()).isFalse();
 		resultSet.close();
 		statement.close();
+		connection.close();
+	}
+	
+	@After
+	public void deleteDb() throws SQLException {
+		Connection connection = DataSourceFactory.getDataSource().getConnection();
+		Statement stmt = connection.createStatement();
+		stmt.executeUpdate("DELETE FROM person");
+		stmt.executeUpdate("DELETE FROM address");
+		stmt.close();
 		connection.close();
 	}
 }
